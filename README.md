@@ -1,8 +1,8 @@
-# Voice Assistant API
+# Voice Assistant API Proxy
 
-Simple Express API hosted on Vercel that proxies to `galiai-chi` API.
+This project proxies requests to `galiai-chi` API.
 
-## Endpoints
+## Endpoint
 - `/ask?q=your_text`
 
 ## Example
