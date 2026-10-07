@@ -2,26 +2,20 @@ const express = require("express");
 const axios = require("axios");
 const app = express();
 
-// API endpoint: /ask?q=hello
+// Proxy endpoint: /ask?q=hello
 app.get("/ask", async (req, res) => {
   const q = req.query.q || "empty";
 
   try {
-    // Call your external API (example: galiai-chi)
+    // Call galiai-chi API directly
     const response = await axios.get("https://galiai-chi.vercel.app/ask", {
       params: { q }
     });
 
-    // Return JSON response for voice assistant
-    res.json({
-      query: q,
-      answer: response.data || "No response from API"
-    });
+    // Return exactly what galiai-chi sends
+    res.send(response.data);
   } catch (error) {
-    res.json({
-      query: q,
-      error: error.message
-    });
+    res.status(500).send(error.message);
   }
 });
 
